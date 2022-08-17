@@ -1,3 +1,4 @@
+from ipaddress import collapse_addresses
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -54,6 +55,7 @@ def update_worksheet1(tips):
     print("Tips worksheet updated successfully... \n")
 
 def update_worksheet2(tips):
+    #updates the other spreadsheet
     print("Updating weekly average")
     weekly_avg = SHEET.worksheet("week")
     weekly_avg.append_row(tips)
@@ -72,7 +74,15 @@ def calculate_weekly_avg(tips):
     this_week = [average, sum(tips)]
     return this_week
 
-
+def monthly_total():
+    #Calculate montlhy income from tips 
+    monthly = SHEET.worksheet("week")
+    totals = monthly.col_values(2)
+    final = totals[-4:]
+    calc = [float(i) for i in final]
+    summ = sum(calc)
+    print(f"Your monthly total from last 4 weeks is {summ}")
+    print(f"At this pace your yearly earnings from tips will be {summ*12}... \n")
 
 def main():
     # Runs all program functions :)
@@ -81,8 +91,10 @@ def main():
     update_worksheet1(tips_data)
     new_tips_data = calculate_weekly_avg(tips_data)
     update_worksheet2(new_tips_data)
-    
+    monthly_total()
 
+
+    
 
 print("Welcome to tips calculator\n")
 print("The objective of this program is to calculate the weekly average of your tips")
