@@ -81,8 +81,8 @@ def monthly_total():
     final = totals[-4:]
     calc = [float(i) for i in final]
     summ = sum(calc)
-    print(f"Your monthly total from last 4 weeks is {summ}")
-    print(f"At this pace your yearly earnings from tips will be {summ*12}... \n")
+    print(f"Your monthly total from last 4 weeks is {summ}$")
+    print(f"At this pace your yearly earnings from tips will be {summ*12}$... \n")
 
 def main():
     # Runs all program functions :)
