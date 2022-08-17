@@ -66,10 +66,12 @@ def calculate_weekly_avg(tips):
     print("Calculating weekly average and total in $\n")
     this_week = []
     average = sum(tips)/len(tips)
+    average = round(average, 2)
     print(f"The weekly average per day is {average} dollars")
     print(f"The total money earend this week is {sum(tips)} dollars\n")
     this_week = [average, sum(tips)]
     return this_week
+
 
 
 def main():
