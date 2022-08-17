@@ -30,11 +30,13 @@ def validate_tips(values):
     # If the value cannot be converted, throw an Error, 
     # If there are not 5 values for 5 days of the week, also throw Error
     try:
+        [float(value) for value in values]
         if len(values) != 5:
             raise ValueError(
                 f"Exatcly five values are required, you provided {len(values)}"
             )  
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")  
+    print(values)
 
 get_tips_data()
