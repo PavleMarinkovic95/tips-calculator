@@ -25,6 +25,16 @@ def get_tips_data():
     tips_data = data_str.split(",")
     validate_tips(tips_data)
     
-
+def validate_tips(values):
+    # Inside the try, we convert the the string values to floats
+    # If the value cannot be converted, throw an Error, 
+    # If there are not 5 values for 5 days of the week, also throw Error
+    try:
+        if len(values) != 5:
+            raise ValueError(
+                f"Exatcly five values are required, you provided {len(values)}"
+            )  
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")  
 
 get_tips_data()
